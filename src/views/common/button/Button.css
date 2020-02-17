@@ -1,0 +1,8 @@
+.button {
+    font-style: normal;
+    text-decoration: none;
+    border: none;
+    width: 200px;
+    font-size: large;
+    padding: 5px 20px;
+}

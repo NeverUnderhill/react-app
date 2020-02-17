@@ -1,11 +1,10 @@
 import React from "react";
-import { Switch, Route, HashRouter } from "react-router-dom";
-import HeaderComponent from "../common/header/HeaderComponent";
-import StartPage from "../start/StartPage";
-import ManageEquipmentComponent from "../equipment/manage/ManageEquipmentComponent";
-import EquipmentOverviewComponent from "../equipment/overview/EquipmentOverviewComponent";
+import Body from "../common/sidebar/Body";
+import Header from "../common/header/HeaderComponent"
 
 import "./App.css";
+
+
 
 /**
  * Application entry point.
@@ -15,19 +14,9 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="app">
-        <HashRouter>
-          <HeaderComponent />
-          <div className="pageContainer">
-            <Switch>
-              <Route path="/" exact component={StartPage} />
-              <Route
-                path="/equipment/:id"
-                component={ManageEquipmentComponent}
-              />
-              <Route path="/equipment" component={EquipmentOverviewComponent} />
-            </Switch>
-          </div>
-        </HashRouter>
+        {/*  FIXME: Adapt current structure to reflect sections from the UI. */}
+        <Header />
+        <Body />  
       </div>
     );
   }

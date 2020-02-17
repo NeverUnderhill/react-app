@@ -1,23 +1,15 @@
-.header {
-  background-color: #f5870d;
-  height: 45px;
-}
-
-.header .menu-item {
-  float: left;
-  margin-left: 20px;
-  line-height: 35px;
-  color: white;
-  text-decoration: none;
-  border-top: 5px solid #f5870d;
-}
-
-.menu-item.active {
-  border-top: 5px solid white;
+.pageHeader {
+  background-color: white;
+  width: 100%;
+  box-shadow: 10px 10px 9px rgba(0,0,0,.1);
+  position: sticky;
 }
 
 .logo {
   float: left;
-  margin-left: 10px;
-  margin-top: 0px;
+  /* margin-top: 0px; */
+}
+
+.br {
+  clear: both;
 }

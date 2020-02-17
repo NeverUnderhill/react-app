@@ -1,0 +1,68 @@
+.sidebar {
+  padding-top: 55px;
+  background-color: #E7E9EA;
+  width: 429px;
+  padding-bottom: 100px;
+  text-align: left;
+  font-family: Tahoma, Geneva, sans-serif;
+}
+
+.sidebar .menu-item {
+  box-sizing: border-box; 
+  float: left;
+  padding-left: 18px;
+  line-height: 55px;
+  border-left: 18px solid transparent;
+  color: #265C79;
+  text-decoration: none;
+  width: 100%;
+  font-size: 21px;
+}
+
+.sidebar .submenu-item {
+  box-sizing: border-box; 
+  float: left;
+  padding: 2px 5px;
+  padding-left: 60px;
+  line-height: 25px;
+  border-left: 18px solid transparent;
+  color: #265C79;
+  text-decoration: none;
+  width: 100%;
+  font-size: 20px;
+}
+
+ul, li {
+  margin: 0;
+}
+
+.menu-item.active, .menu-item:hover {
+  border-left: 18px solid #3F9AC9;
+  color: #3F9AC9;
+}
+
+.submenu-item.active, .submenu-item:hover {
+  border-left: 18px solid #3F9AC9;
+  color: #3F9AC9;
+}
+
+.sticker {
+  margin-right: 10px;
+  font-size: 33px;
+}
+
+.content {
+  margin-left: 42px;
+  margin-top: 42px;
+  font-size: 2.5em;
+}
+
+.arrow {
+  padding-right: 55px;
+  padding-top: 10px;
+  float: right;
+}
+
+.transition {
+  transition: height 1s;
+}
