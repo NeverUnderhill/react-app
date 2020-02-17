@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
-import DropdownButton from '../contextMenu/ContextMenu'
+import DropdownButton from '../dropdown/DropdownMenu'
 import { NavLink } from 'react-router-dom';
 import React from "react";
 import "./Table.css";

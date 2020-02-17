@@ -6,3 +6,7 @@ body {
 .app {
   text-align: center;
 }
+
+.app-body {
+  display: flex;
+}

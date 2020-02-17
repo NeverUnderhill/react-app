@@ -1,6 +1,6 @@
 import React from "react";
-import Input from "../components/Input";
-import Select from "../components/Select";
+import Input from "../../common/inputComponents/Input";
+import Select from "../../common/inputComponents/Select";
 import { createBrowserHistory } from 'history';
 
 import "./certificateForm.css";
