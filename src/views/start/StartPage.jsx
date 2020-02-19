@@ -2,6 +2,6 @@ import React from "react";
 
 export default class StartPage extends React.Component {
   render() {
-    return <h1>Henlo</h1>;
+    return <h1>Start</h1>;
   }
 }

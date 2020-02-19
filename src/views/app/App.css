@@ -1,12 +1,15 @@
 body {
+  height: 100%;
   margin: 0;
   font-family: Sans-Serif;
 }
 
-.app {
-  text-align: center;
+.app-body {
+  height: 100%;
+  display: flex;
 }
 
-.app-body {
-  display: flex;
+.content {
+  height: 100%;
+  width: 100%;
 }

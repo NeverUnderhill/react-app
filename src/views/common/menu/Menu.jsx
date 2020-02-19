@@ -8,32 +8,33 @@ import {
 } from "react-router-dom";
 
 import './Menu.css';
-
-export const subitems = [
-  [
-    "Example 1",
-    "/example1"
-  ],
-  [
-    "Example 2",
-    "/example2"
-  ],
-  [
-    "Example 3",
-    "/example3"
-  ],
-];
+import Router from '../../app/Router';
 
 export default function Menu() {
+
+  // TODO:
+  /*
+    const bla = (
+        <div>
+          <MenuItem title="Home"/>
+          <MenuItem title="Machine learning">
+            <MenuItem title="E1" to="" icon=""/>
+            <MenuItem title="E2"/>
+            <MenuItem title="E3"/>
+          </MenuItemtitle>
+        </div>
+    );
+    return bla;
+  */
+
   return (
-    //  FIXME: Which router we're using (Memory, Hash, ...) ? Which should we use and why ?
       <div>
         <div className="sidebar">
-          <NavLink to="/start" key="/start" className="menu-item">
+          <NavLink className="menu-item" exact to={Router.START} >
             <FontAwesomeIcon icon={faHome} className="sticker" />
             Start
           </NavLink>
-          <CollapsableLink to="/machine-learning" key="/machine-learning" subItems={subitems}>
+          <CollapsableLink to="/machine-learning">
             <FontAwesomeIcon icon={faBars} className="sticker" />
             Machine learning
           </CollapsableLink>

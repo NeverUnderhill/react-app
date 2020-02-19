@@ -1,5 +1,6 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 import './DropdownMenu.css'
 
 export default class DropdownButton extends React.Component {
@@ -18,7 +19,7 @@ export default class DropdownButton extends React.Component {
     }
 
     handleClickOutside = e => {
-        if(this.container.current && !this.container.current.contains(e.target)){
+        if (this.container.current && !this.container.current.contains(e.target)) {
             this.setState({
                 open: false,
             });
@@ -33,8 +34,8 @@ export default class DropdownButton extends React.Component {
         this.setState({
             open: false,
         });
-        if (window.confirm('Are you sure you wish to delete this item?')){
-            alert("deleted");
+        if (window.confirm('Are you sure you wish to delete this item?')) {
+            this.props.handleDeleteClick(this.props.index);
         }
     }
 
@@ -50,14 +51,12 @@ export default class DropdownButton extends React.Component {
         return (
             <div ref={this.container}>
                 <button className="cog-btn" onClick={this.handleButtonClick}>
-                    {
-                        this.props.children
-                    }
+                    <FontAwesomeIcon icon={faCog} />
                 </button>
                 {this.state.open &&
                     <div className="dropdown">
                         <ul>
-                            <li><NavLink to="/machine-learning/example1/editRow" onClick={this.handleEditClick} className="li">Edit</NavLink></li> 
+                            <li onClick={this.handleEditClick}>Edit</li>
                             <li onClick={this.handleDeleteClick}>Delete</li>
                         </ul>
                     </div>

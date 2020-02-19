@@ -1,108 +1,45 @@
 {
-  "equipment": [
+  "certificates": [
     {
-      "id": "nTOO42u",
-      "employee": "1",
-      "equipmentType": "1",
-      "manufactor": "1",
-      "serialNumber": "wedwed",
-      "model": "1234",
-      "invoiceDate": "12.03.2020",
-      "guarantee": "12.03.2021"
+      "id": "0",
+      "supplier": "0",
+      "certificateType": "0",
+      "validTo": "21.08.2017",
+      "validFrom": "26.08.2017"
     },
     {
-      "id": "UMK52Lx",
-      "employee": "1",
-      "equipmentType": "2",
-      "manufactor": "2",
-      "serialNumber": "fgbfgb",
-      "model": "fgb",
-      "invoiceDate": "12.03.2020",
-      "guarantee": "12.03.2021"
+      "id": "1",
+      "supplier": "0",
+      "certificateType": "1",
+      "validTo": "18.08.2017",
+      "validFrom": "24.08.2017"
     },
     {
-      "id": "cs9bPBd",
-      "employee": "3",
-      "equipmentType": "3",
-      "manufactor": "1",
-      "serialNumber": "vfvfgv",
-      "model": "34",
-      "invoiceDate": "12.03.2020",
-      "guarantee": "12.03.2021"
-    },
-    {
-      "id": "fU5xnJ5",
-      "employee": "1",
-      "equipmentType": "2",
-      "manufactor": "1",
-      "serialNumber": "test",
-      "model": "dfvdfvfv",
-      "invoiceDate": "12.03.2020",
-      "guarantee": "12.03.2021"
-    },
-    {
-      "id": "YJvop8X",
-      "employee": "2",
-      "equipmentType": "6",
-      "manufactor": "2",
-      "serialNumber": "dssdsd",
-      "model": "df",
-      "invoiceDate": "df",
-      "guarantee": "df"
+      "id": "2",
+      "supplier": "1",
+      "certificateType": "0",
+      "validTo": "04.09.2017",
+      "validFrom": "10.10.2017"
     }
   ],
-  "employee": [
+  "supplier": [
+    {
+      "id": 0,
+      "value": "DAIMLER AG, 1, Berlin"
+    },
     {
       "id": 1,
-      "value": "Adan Agić"
-    },
-    {
-      "id": 2,
-      "value": "Elbin Hasić"
-    },
-    {
-      "id": 3,
-      "value": "Mahir Nukić"
+      "value": "ANDEMIS GmbH, 1, Stuttgart"
     }
   ],
-  "equipmentType": [
+  "certificateType": [
+    {
+      "id": 0,
+      "value": "Permission of printing"
+    },
     {
       "id": 1,
-      "value": "Laptop"
-    },
-    {
-      "id": 2,
-      "value": "Docking station"
-    },
-    {
-      "id": 3,
-      "value": "Monitor"
-    },
-    {
-      "id": 4,
-      "value": "Keyboard"
-    },
-    {
-      "id": 5,
-      "value": "Mouse"
-    },
-    {
-      "id": 6,
-      "value": "Headset"
-    },
-    {
-      "id": 7,
-      "value": "Memory"
-    }
-  ],
-  "manufactor": [
-    {
-      "id": 1,
-      "value": "Lenovo"
-    },
-    {
-      "id": 2,
-      "value": "Dell"
+      "value": "OHSAS 18001"
     }
   ]
 }

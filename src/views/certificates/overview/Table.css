@@ -1,4 +1,6 @@
 .table-container {
+    width: 100%;
+    text-align: left;
     background-color: #F6F6F6;
     padding: 3px;
     display: inline-block;
@@ -12,7 +14,7 @@
 
 .table {
     text-align: left;
-    margin-left: auto;
+    margin-left: 0;
     margin-right: auto;
     padding: 8px;
     border: 2px solid #E6E6E6;
