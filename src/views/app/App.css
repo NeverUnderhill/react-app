@@ -1,4 +1,4 @@
-body {
+html, body, #root {
   height: 100%;
   margin: 0;
   font-family: Sans-Serif;
@@ -10,6 +10,7 @@ body {
 }
 
 .content {
+  box-sizing: border-box; 
   height: 100%;
   width: 100%;
 }

@@ -20,6 +20,13 @@
       "certificateType": "0",
       "validTo": "04.09.2017",
       "validFrom": "10.10.2017"
+    },
+    {
+      "supplier": "0",
+      "certificateType": "0",
+      "validFrom": "06.02.2020",
+      "validTo": "29.02.2020",
+      "id": "1FvWLzR"
     }
   ],
   "supplier": [

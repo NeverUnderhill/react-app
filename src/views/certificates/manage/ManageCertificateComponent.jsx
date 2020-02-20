@@ -130,7 +130,7 @@ export default class Certificate extends React.Component {
               <Select
                 title="Certificate type"
                 name="certificateType"
-                value={this.state.certificate.certType}
+                value={this.state.certificate.certificateType}
                 placeholder="Select your option"
                 handleChange={this.handleChange}
               />
