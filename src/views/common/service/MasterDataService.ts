@@ -12,7 +12,7 @@ class MasterDataService {
    * @param {String} dataType this is the identifier of master data type
    * @return {[Promise]} result wrapped inside promise
    */
-  fetchData(dataType) {
+  fetchData(dataType: string) {
     return fetch(this.SERVICE_BASE + dataType).then(data => data.json());
   }
 }

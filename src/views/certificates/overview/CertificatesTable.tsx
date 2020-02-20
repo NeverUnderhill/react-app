@@ -1,39 +1,45 @@
 import React from "react";
-import Router from "../../app/Router";
+import Router from "../../../common/Router";
 import { Link } from "react-router-dom";
 import DropdownButton from "../../common/dropdown/DropdownMenu";
-import certificateService from "../../common/service/certificateService"
-import { withRouter } from 'react-router-dom';
+import certificateService from "../../common/service/CertificateService"
 import "./Table.css"
+import CertificateType from "../../common/types/CertificateType";
 
-class CertificatesTable extends React.Component {
+interface PropsType {
+  editAction: (id: string) => void;
+  data: CertificateType[];
+}
+
+interface StateType {
+  fullData: CertificateType[];
+}
+
+export default class CertificatesTable extends React.Component<PropsType> {
   state = {
     certificates: [],
+    fullData: [],
   };
 
-  editCertificateAction = id => {
-    this.props.history.push(Router.CERTIFICATES + id);
-  };
-
-  static getDerivedStateFromProps(nextProps, prevState) {
+  static getDerivedStateFromProps(nextProps: PropsType, prevState: StateType) {
     if (nextProps.data !== prevState.fullData) {
       return { certificates: nextProps.data, fullData: nextProps.data };
     }
-
     return nextProps;
   }
 
-  buildTableRow(item) {
+  buildTableRow(item: CertificateType) {
     return (
       <tr key={item.id} className="body">
         <td>
         <DropdownButton
-          handleEditClick={() => this.editCertificateAction(item.id)} certId={item.id}
-          handleDeleteClick={() => certificateService.deleteCertificateItem({id: item.id}).then(() => window.location.reload())}
+          handleEditClick={this.props.editAction}
+          certId={item.id}
+          handleDeleteClick={(certId: string) => certificateService.deleteCertificateItem(certId).then(() => window.location.reload())}
           />
         </td>
-        <td>{item.supplier}</td>
-        <td>{item.certificateType}</td>
+        <td>{item.supplier !== undefined ? item.supplier.value : ""}</td>
+        <td>{item.certificateType !== undefined ? item.certificateType.value : ""}</td>
         <td>{item.validFrom}</td>
         <td>{item.validTo}</td>
       </tr>
@@ -44,7 +50,7 @@ class CertificatesTable extends React.Component {
     return (
       <div className="table-container">
         <div style={{ marginBottom: "10px" }}>
-          <Link to={Router.CERTIFICATES_MANAGE} className="new-cert-button">New certificate</Link>
+          <Link to={Router.CERTIFICATES_MANAGE_NEW} className="new-cert-button">New certificate</Link>
         </div>
         <table className="table">
           <thead>
@@ -64,5 +70,3 @@ class CertificatesTable extends React.Component {
     );
   }
 }
-
-export default withRouter(CertificatesTable);

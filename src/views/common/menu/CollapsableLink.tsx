@@ -1,17 +1,20 @@
 import React, { Fragment } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleRight } from '@fortawesome/free-solid-svg-icons';
-import { Link, NavLink } from 'react-router-dom';
-import Router from '../../app/Router';
+import { NavLink } from 'react-router-dom';
+import Router from '../../../common/Router';
 
-export default class CollapsableLink extends React.Component {
+interface StateType {
+  isCollapsed: boolean;
+}
+
+export default class CollapsableLink extends React.Component<{}, StateType> {
   state = {
     isCollapsed: false,
-    sublist: null,
   }
 
-  toggleCollapsed = e => {
-    this.setState(prevState => ({
+  toggleCollapsed = () => {
+    this.setState((prevState: StateType) => ({
       isCollapsed: !prevState.isCollapsed
     }));
   }
@@ -19,10 +22,10 @@ export default class CollapsableLink extends React.Component {
   render() {
     return (
       <div>
-        <Link className="menu-item" onClick={this.toggleCollapsed}>
+        <div className="menu-item" onClick={this.toggleCollapsed}>
           {this.props.children}
           {!this.state.isCollapsed ? <FontAwesomeIcon icon={faAngleDown} className="arrow" /> : <FontAwesomeIcon icon={faAngleRight} className="arrow" />}
-        </Link>
+        </div>
         {!this.state.isCollapsed && 
           <Fragment >
             <NavLink className="submenu-item" exact to={Router.CERTIFICATES} >
@@ -34,8 +37,6 @@ export default class CollapsableLink extends React.Component {
             <NavLink className="submenu-item" exact to="example3" >
               Example 3
             </NavLink>
-            {/* <NavLink className="submenu-item" exact to={Router.CERTIFICATES_MANAGE} > */}
-            {/* </NavLink> */}
           </Fragment>
         }
       </div>

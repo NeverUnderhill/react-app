@@ -1,30 +1,35 @@
 import React from "react";
-import certificateService from "../../common/service/certificateService";
+import certificateService from "../../common/service/CertificateService";
 import CertificatesTable from "./CertificatesTable";
+import { History, LocationState } from "history";
+import Router from "../../../common/Router";
+import CertificateType from "../../common/types/CertificateType";
 
-import Router from "../../app/Router";
+interface PropsType {
+  history: History<LocationState>;
+}
 
 /**
  * Overview of certificate data.
  */
-export default class CertificateOverviewComponent extends React.Component {
+export default class CertificateOverviewComponent extends React.Component<PropsType> {
   state = {
     certificates: []
   };
 
-  constructor(props) {
+  constructor(props: PropsType) {
     super(props);
     certificateService
       .fetchCertificates()
       .then(result => this.updateStateAction(result));
   }
 
-  updateStateAction = data => {
+  updateStateAction = (data: CertificateType[]) => {
     this.setState({ certificates: data });
   };
 
   // FIXME: There is no need to make this action here...since #{@link EquipmentTable} is strict to the equipment itself...
-  editCertificatesAction = id => {
+  editCertificatesAction = (id: string) => {
     this.props.history.push(Router.CERTIFICATES + id);
   };
 

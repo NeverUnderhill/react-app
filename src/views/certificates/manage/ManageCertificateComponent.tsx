@@ -1,21 +1,31 @@
 import React from "react";
-import certificateService from "../../common/service/certificateService"
+import certificateService from "../../common/service/CertificateService"
 import Select from "../../common/select/Select";
-import Router from "../../app/Router";
+import Router from "../../../common/Router";
+import { History, LocationState } from "history";
 import "./certificateForm.css";
+import CertificateType from "../../common/types/CertificateType";
 
-export default class Certificate extends React.Component {
-  state = {
+interface PropsType {
+  history: History<LocationState>;
+}
+
+interface StateType {
+  certificate: CertificateType;
+}
+
+export default class Certificate extends React.Component<PropsType, StateType> {
+  state: StateType = {
     certificate: {
       id: "",
-      supplier: "",
-      certificateType: "",
+      supplierId: 0,
+      certificateTypeId: 0,
       validFrom: "",
       validTo: "",
     }
   };
 
-  constructor(props) {
+  constructor(props: PropsType) {
     super(props);
     let eqId = window.location.hash.substring(15);
     if (eqId) {
@@ -25,9 +35,9 @@ export default class Certificate extends React.Component {
     }
   }
 
-  saveCertificateItemAction = (e) => {
+  saveCertificateItemAction = (event: React.MouseEvent<HTMLInputElement>) => {
     if (this.isFormValid()) {
-      e.preventDefault();
+      event.preventDefault();
       certificateService.saveCertificateItem(this.state.certificate).then(() => {
         this.props.history.push(Router.CERTIFICATES);
         alert("Data saved");
@@ -37,8 +47,8 @@ export default class Certificate extends React.Component {
     }
   }
 
-  resetCertificateForm = (e) => {
-    e.preventDefault();
+  resetCertificateForm = (event: React.MouseEvent<HTMLInputElement>) => {
+    event.preventDefault();
     if(this.state.certificate.id) {
       certificateService.fetchCertificateById(this.state.certificate.id).then((data) => this.setState({
         certificate: data,
@@ -47,8 +57,8 @@ export default class Certificate extends React.Component {
       this.setState({
         certificate: {
           id: "",
-          supplier: "",
-          certificateType: "",
+          supplierId: 0,
+          certificateTypeId: 0,
           validFrom: "",
           validTo: "",
         }
@@ -59,7 +69,7 @@ export default class Certificate extends React.Component {
  /*
   * Converts date string from yyyy-mm-dd to dd.mm.yyyy format
   */
-  localizeDate = (date) => {
+  localizeDate = (date: string) => {
     try {
       return date.split('-').reverse().join('.');
     } catch (error) {
@@ -70,7 +80,7 @@ export default class Certificate extends React.Component {
  /*
   * Converts date string from dd.mm.yyyy to yyyy-mm-dd format
   */
-  delocalizeDate = (date) => {
+  delocalizeDate = (date: string) => {
     try {
       return date.split('.').reverse().join('-');
     } catch (error) {
@@ -78,11 +88,10 @@ export default class Certificate extends React.Component {
     }
   }
 
-
   isFormValid = () => {
     if (
-      this.state.certificate.supplier &&
-      this.state.certificate.certificateType &&
+      this.state.certificate.supplierId &&
+      this.state.certificate.certificateTypeId &&
       this.state.certificate.validFrom &&
       this.state.certificate.validTo
     ) {
@@ -91,7 +100,7 @@ export default class Certificate extends React.Component {
     return false;
   };
 
-  handleChange = event => {
+  handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     event.preventDefault();
     this.setState({
         certificate: {
@@ -101,7 +110,7 @@ export default class Certificate extends React.Component {
     });
   };
 
-  handleDateChange = event => {
+  handleDateChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     event.preventDefault();
     this.setState({
         certificate: {
@@ -119,20 +128,20 @@ export default class Certificate extends React.Component {
             <div className="column">
               <label>Supplier</label>
               <Select
-                title="Supplier"
-                name="supplier"
-                value={this.state.certificate.supplier}
+                serviceName="suppliers"
+                name="supplierId"
+                value={this.state.certificate.supplierId}
                 placeholder="Select the supplier"
-                handleChange={this.handleChange}
+                onChange={this.handleChange}
               />
               <br></br>
               <label>Certificate type</label>
               <Select
-                title="Certificate type"
-                name="certificateType"
-                value={this.state.certificate.certificateType}
+                serviceName="certificateTypes"
+                name="certificateTypeId"
+                value={this.state.certificate.certificateTypeId}
                 placeholder="Select your option"
-                handleChange={this.handleChange}
+                onChange={this.handleChange}
               />
               <br></br>
               <label>Valid from</label>

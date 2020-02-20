@@ -3,23 +3,33 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import './DropdownMenu.css'
 
-export default class DropdownButton extends React.Component {
+interface StateType {
+    open: boolean;
+}
+
+interface PropsType {
+    certId: string;
+    handleEditClick: (id: string) => void;
+    handleDeleteClick: (certId: string) => void;
+}
+
+export default class DropdownButton extends React.Component<PropsType, StateType> {
     state = {
         open: false,
     };
 
-    container = React.createRef();
+    container = React.createRef<HTMLDivElement>();
 
-    handleButtonClick = e => {
-        this.setState(state => {
+    handleButtonClick = () => {
+        this.setState((state: StateType) => {
             return {
                 open: !state.open,
             };
         });
     }
 
-    handleClickOutside = e => {
-        if (this.container.current && !this.container.current.contains(e.target)) {
+    handleClickOutside = (e: Event) => {
+        if (this.container.current && !this.container.current.contains(e.target as Node)) {
             this.setState({
                 open: false,
             });
@@ -27,7 +37,7 @@ export default class DropdownButton extends React.Component {
     }
 
     handleEditClick = () => {
-        this.props.handleEditClick(this.props.index);
+        this.props.handleEditClick(this.props.certId);
     }
 
     handleDeleteClick = () => {
@@ -35,7 +45,7 @@ export default class DropdownButton extends React.Component {
             open: false,
         });
         if (window.confirm('Are you sure you wish to delete this item?')) {
-            this.props.handleDeleteClick(this.props.index);
+            this.props.handleDeleteClick(this.props.certId);
         }
     }
 

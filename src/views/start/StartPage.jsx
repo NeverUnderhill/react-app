@@ -2,6 +2,10 @@ import React from "react";
 
 export default class StartPage extends React.Component {
   render() {
-    return <h1>Start</h1>;
+    return (
+      <div style={{paddingLeft: "20px"}}>
+        <h1>Start</h1>;
+      </div>
+    );
   }
 }

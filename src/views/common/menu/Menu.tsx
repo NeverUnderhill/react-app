@@ -6,9 +6,8 @@ import CollapsableLink from './CollapsableLink';
 import {
   NavLink,
 } from "react-router-dom";
-
+import Router from '../../../common/Router';
 import './Menu.css';
-import Router from '../../app/Router';
 
 export default function Menu() {
 
@@ -34,7 +33,7 @@ export default function Menu() {
             <FontAwesomeIcon icon={faHome} className="sticker" />
             Start
           </NavLink>
-          <CollapsableLink to="/machine-learning">
+          <CollapsableLink>
             <FontAwesomeIcon icon={faBars} className="sticker" />
             Machine learning
           </CollapsableLink>
