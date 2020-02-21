@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDown, faAngleRight } from '@fortawesome/free-solid-svg-icons';
 import { NavLink } from 'react-router-dom';
-import Router from '../../../common/Router';
+import Router from '../../../common/RouterPaths';
 
 interface StateType {
   isCollapsed: boolean;

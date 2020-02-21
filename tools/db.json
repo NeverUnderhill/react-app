@@ -1,11 +1,18 @@
 {
   "certificates": [
     {
-      "id": "0",
+      "supplierId": "0",
+      "certificateTypeId": "1",
+      "validFrom": "2020-02-29",
+      "validTo": "2020-02-14",
+      "id": 1
+    },
+    {
       "supplierId": "1",
-      "certificateTypeId": "0",
-      "validTo": "21.08.2017",
-      "validFrom": "26.08.2017",
+      "certificateTypeId": "1",
+      "validFrom": "2020-02-22",
+      "validTo": "2020-02-29",
+      "id": 2,
       "supplier": {
         "id": 1,
         "value": "ANDEMIS GmbH, 1, Stuttgart"
@@ -16,32 +23,11 @@
       }
     },
     {
-      "id": "1",
-      "supplierId": "0",
-      "certificateTypeId": "1",
-      "validTo": "18.08.2017",
-      "validFrom": "24.08.2017"
-    },
-    {
-      "id": "2",
       "supplierId": "1",
       "certificateTypeId": "0",
-      "validTo": "04.09.2017",
-      "validFrom": "10.10.2017"
-    },
-    {
-      "supplierId": "0",
-      "certificateTypeId": "0",
-      "validFrom": "22.02.2020",
-      "validTo": "29.02.2020",
-      "id": "Z1QiMaM"
-    },
-    {
-      "supplierId": "0",
-      "certificateTypeId": "1",
-      "validFrom": "29.02.2020",
-      "validTo": "22.02.2020",
-      "id": "qWIsysQ"
+      "validFrom": "2020-02-12",
+      "validTo": "2020-02-28",
+      "id": 3
     }
   ],
   "suppliers": [

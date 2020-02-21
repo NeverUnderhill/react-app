@@ -6,7 +6,7 @@ import CollapsableLink from './CollapsableLink';
 import {
   NavLink,
 } from "react-router-dom";
-import Router from '../../../common/Router';
+import Router from '../../../common/RouterPaths';
 import './Menu.css';
 
 export default function Menu() {

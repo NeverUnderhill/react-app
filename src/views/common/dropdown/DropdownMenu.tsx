@@ -1,19 +1,20 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
+import certificateService from "../../common/service/CertificateService"
+import Router from "../../../common/RouterPaths";
+import { RouteComponentProps, withRouter } from 'react-router';
 import './DropdownMenu.css'
 
-interface StateType {
+interface DropdownButtonState {
     open: boolean;
 }
 
-interface PropsType {
-    certId: string;
-    handleEditClick: (id: string) => void;
-    handleDeleteClick: (certId: string) => void;
+interface DropdownButtonProps extends RouteComponentProps{
+    id: string;
 }
 
-export default class DropdownButton extends React.Component<PropsType, StateType> {
+class DropdownButton extends React.Component<DropdownButtonProps, DropdownButtonState> {
     state = {
         open: false,
     };
@@ -21,7 +22,7 @@ export default class DropdownButton extends React.Component<PropsType, StateType
     container = React.createRef<HTMLDivElement>();
 
     handleButtonClick = () => {
-        this.setState((state: StateType) => {
+        this.setState((state: DropdownButtonState) => {
             return {
                 open: !state.open,
             };
@@ -36,18 +37,18 @@ export default class DropdownButton extends React.Component<PropsType, StateType
         }
     }
 
-    handleEditClick = () => {
-        this.props.handleEditClick(this.props.certId);
-    }
-
-    handleDeleteClick = () => {
+    deleteCertificateAction = () => {
         this.setState({
             open: false,
         });
         if (window.confirm('Are you sure you wish to delete this item?')) {
-            this.props.handleDeleteClick(this.props.certId);
+            certificateService.deleteCertificateItem(this.props.id).then(() => window.location.reload())
         }
     }
+
+    editCertificateAction = () => {
+        this.props.history.push(Router.CERTIFICATES + this.props.id);
+    };
 
     componentDidMount() {
         document.addEventListener("mousedown", this.handleClickOutside);
@@ -66,8 +67,8 @@ export default class DropdownButton extends React.Component<PropsType, StateType
                 {this.state.open &&
                     <div className="dropdown">
                         <ul>
-                            <li onClick={this.handleEditClick}>Edit</li>
-                            <li onClick={this.handleDeleteClick}>Delete</li>
+                            <li onClick={this.editCertificateAction}>Edit</li>
+                            <li onClick={this.deleteCertificateAction}>Delete</li>
                         </ul>
                     </div>
                 }
@@ -75,3 +76,5 @@ export default class DropdownButton extends React.Component<PropsType, StateType
         );
     }
 }
+
+export default withRouter(DropdownButton);

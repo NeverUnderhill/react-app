@@ -1,51 +1,20 @@
-import React from "react";
-import Router from "../../../common/Router";
+import React, { Component, ReactNode } from "react";
+import { RouteComponentProps, withRouter } from 'react-router';
+import Router from "../../../common/RouterPaths";
 import { Link } from "react-router-dom";
-import DropdownButton from "../../common/dropdown/DropdownMenu";
-import certificateService from "../../common/service/CertificateService"
-import "./Table.css"
 import CertificateType from "../../common/types/CertificateType";
+import { renderDropdownButton } from '../../../common/componentUtils';
+import "./Table.css"
 
-interface PropsType {
-  editAction: (id: string) => void;
+interface CertificateTableProps extends RouteComponentProps {
   data: CertificateType[];
 }
 
-interface StateType {
+interface CertificatesTableState {
   fullData: CertificateType[];
 }
 
-export default class CertificatesTable extends React.Component<PropsType> {
-  state = {
-    certificates: [],
-    fullData: [],
-  };
-
-  static getDerivedStateFromProps(nextProps: PropsType, prevState: StateType) {
-    if (nextProps.data !== prevState.fullData) {
-      return { certificates: nextProps.data, fullData: nextProps.data };
-    }
-    return nextProps;
-  }
-
-  buildTableRow(item: CertificateType) {
-    return (
-      <tr key={item.id} className="body">
-        <td>
-        <DropdownButton
-          handleEditClick={this.props.editAction}
-          certId={item.id}
-          handleDeleteClick={(certId: string) => certificateService.deleteCertificateItem(certId).then(() => window.location.reload())}
-          />
-        </td>
-        <td>{item.supplier !== undefined ? item.supplier.value : ""}</td>
-        <td>{item.certificateType !== undefined ? item.certificateType.value : ""}</td>
-        <td>{item.validFrom}</td>
-        <td>{item.validTo}</td>
-      </tr>
-    );
-  }
-
+class CertificatesTable extends Component<CertificateTableProps, CertificatesTableState> {
   render() {
     return (
       <div className="table-container">
@@ -63,10 +32,47 @@ export default class CertificatesTable extends React.Component<PropsType> {
             </tr>
           </thead>
           <tbody>
-            {this.state.certificates.map(item => this.buildTableRow(item))}
+            {this.renderBody()}
           </tbody>
         </table>
       </div>
     );
   }
+
+  private renderBody() {
+    const {data} = this.props;
+    const nodes: ReactNode[] = [];
+    data.forEach(certificate => {
+      nodes.push(this.renderRow(certificate));
+    });
+    return nodes;
+  }
+
+  /*
+   * Converts date string from yyyy-mm-dd to dd.mm.yyyy format
+   */
+  localizeDate = (date: string) => {
+    try {
+      return date
+        .split("-")
+        .reverse()
+        .join(".");
+    } catch (error) {
+      return "";
+    }
+  };
+
+  renderRow(item: CertificateType) {
+    return (
+      <tr key={item.id} className="body">
+        <td>{renderDropdownButton(item.id)}</td>
+        <td>{item.supplier ? item.supplier.value : ""}</td>
+        <td>{item.certificateType ? item.certificateType.value : ""}</td>
+        <td>{this.localizeDate(item.validFrom)}</td>
+        <td>{this.localizeDate(item.validTo)}</td>
+      </tr>
+    );
+  }
 }
+
+export default withRouter(CertificatesTable);

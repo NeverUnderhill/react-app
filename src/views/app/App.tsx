@@ -1,9 +1,11 @@
 import React from "react";
 import Header from "../common/header/HeaderComponent";
 import ManageCertificateComponent from "../certificates/manage/ManageCertificateComponent";
-import CertificatesOverviewComponent from "../certificates/overview/CertificateOverviewComponent"
+import CertificatesOverviewComponent from "../certificates/overview/CertificateOverviewComponent";
+import CertificateFormComponent from "../certificates/manage/CertificateFormComponent";
 import Menu from "../common/menu/Menu";
 import StartPage from "../start/StartPage";
+import Router from "../../common/RouterPaths"
 import {
   HashRouter,
   Switch,
@@ -24,18 +26,10 @@ export default class App extends React.Component {
           <Menu />
           <div className="content">
             <Switch>
-              <Route
-                path="/"
-                exact
-                component={StartPage} />
-              <Route
-                path={"/certificates/:id"}
-                component={ManageCertificateComponent}
-              />
-              <Route
-                path={"/certificates"}
-                component={CertificatesOverviewComponent}
-              />
+              <Route path={Router.START} exact component={StartPage} />
+              <Route path={Router.CERTIFICATES_MANAGE_NEW} component={CertificateFormComponent} />
+              <Route path={Router.CERTIFICATES_MANAGE_EDIT} component={ManageCertificateComponent} />
+              <Route path={Router.CERTIFICATES} component={CertificatesOverviewComponent} />
             </Switch>
           </div>
         </div>

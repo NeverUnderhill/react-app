@@ -6,7 +6,7 @@ interface SelectProps {
   name: string;
   serviceName: string;
   placeholder?: string;
-  value: number;
+  value: number | string;
   onChange: (event: React.ChangeEvent<HTMLSelectElement>) => void;
 }
 
@@ -37,7 +37,7 @@ export default class Select extends React.Component<SelectProps> {
           value={this.props.value}
           onChange={this.props.onChange}
         >
-          <option value={this.props.placeholder}>{this.props.placeholder}</option>
+          <option value={"Select your option"}>{"Select your option"}</option>
           {options}
         </select>
       </div>
