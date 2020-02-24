@@ -4,7 +4,7 @@ import { faCog } from '@fortawesome/free-solid-svg-icons';
 import certificateService from "../../common/service/CertificateService"
 import Router from "../../../common/RouterPaths";
 import { RouteComponentProps, withRouter } from 'react-router';
-import './DropdownMenu.css'
+import './DropdownMenu.scss'
 
 interface DropdownButtonState {
     open: boolean;

@@ -7,7 +7,7 @@ import {
   NavLink,
 } from "react-router-dom";
 import Router from '../../../common/RouterPaths';
-import './Menu.css';
+import './Menu.scss';
 
 export default function Menu() {
 

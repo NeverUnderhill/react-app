@@ -4,7 +4,7 @@ import Router from "../../../common/RouterPaths";
 import { Link } from "react-router-dom";
 import CertificateType from "../../common/types/CertificateType";
 import { renderDropdownButton } from '../../../common/componentUtils';
-import "./Table.css"
+import "./Table.scss"
 
 interface CertificateTableProps extends RouteComponentProps {
   data: CertificateType[];
@@ -23,7 +23,7 @@ class CertificatesTable extends Component<CertificateTableProps, CertificatesTab
         </div>
         <table className="table">
           <thead>
-            <tr className="header">
+            <tr className="table-header">
               <th></th>
               <th>Supplier</th>
               <th>Certificate Type</th>
@@ -31,7 +31,7 @@ class CertificatesTable extends Component<CertificateTableProps, CertificatesTab
               <th>Valid to</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="table-body">
             {this.renderBody()}
           </tbody>
         </table>

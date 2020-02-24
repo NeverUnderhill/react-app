@@ -1,0 +1,26 @@
+.dropdown {
+    position: absolute;
+    width: 100px;
+    background-color: #F9F9F9;
+    text-align: left;
+
+    ul {
+        list-style: none;
+        padding: 0px;
+        margin: 0;
+
+        li {
+            text-decoration: none;
+            padding: 8px 12px;
+
+            &:hover {
+                background-color: #DCDCDC;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.cog-btn {
+    border: 0;
+}

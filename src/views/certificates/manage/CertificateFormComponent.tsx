@@ -1,7 +1,7 @@
 import React from "react";
 import certificateService from "../../common/service/CertificateService";
 import Router from "../../../common/RouterPaths";
-import "./certificateForm.css";
+import "./certificateForm.scss";
 import CertificateType from "../../common/types/CertificateType";
 import { RouteComponentProps } from "react-router";
 import {

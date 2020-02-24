@@ -9,7 +9,7 @@ export function renderInput<T, U extends keyof T & string>(label: string, model:
     onchange(name, event.target.value);
   }
 
-  return <div>
+  return <div className="form-element">
     <span>{label}</span>
     <input
       className="intput"
@@ -28,7 +28,7 @@ export function renderSelect<T, U extends keyof T & string>(label: string, model
     onChange(name, event.target.value);
   }
 
-  return <div>
+  return <div className="form-element">
     <span>{label}</span>
     <Select
       name={name}

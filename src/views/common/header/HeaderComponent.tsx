@@ -1,7 +1,7 @@
 import React from "react";
 import logo from "./logo.png";
 
-import "./Header.css";
+import "./Header.scss";
 
 /**
  * Holder component of all header related elements.
@@ -13,7 +13,7 @@ export default class HeaderComponent extends React.Component {
         <div>
           <img src={logo} className="logo" alt="" />
         </div>
-        <br className="br" />
+        <br />
       </div>
     );
   }
