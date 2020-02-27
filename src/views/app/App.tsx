@@ -12,6 +12,7 @@ import {
   Route,
 } from "react-router-dom";
 import "./App.scss";
+import SupplierOverviewComponent from '../certificates/manage/supplierOverview/SupplierOverviewComponent';
 
 /**
  * Application entry point.
@@ -27,6 +28,7 @@ export default class App extends React.Component {
             <Switch>
               <Route path={Router.START} exact component={StartPage} />
               <Route path={Router.CERTIFICATES_MANAGE_NEW} component={CertificateFormComponent} />
+              <Route path={Router.SUPPLIERS} component={SupplierOverviewComponent} />
               <Route path={Router.CERTIFICATES_MANAGE_EDIT} component={ManageCertificateComponent} />
               <Route path={Router.CERTIFICATES} component={CertificatesOverviewComponent} />
             </Switch>

@@ -12,9 +12,12 @@ import {
   Row,
   renderFilePicker
 } from "../../../common/componentUtils";
+import SupplierOverviewComponent from "./supplierOverview/SupplierOverviewComponent";
+import SupplierType from '../../common/types/SupplierType';
 
 interface ManageCertificateComponentState {
   certificate: CertificateType;
+  showSuppliersModal: boolean;
 }
 
 export default class CertificateFormComponent<T> extends React.Component<
@@ -22,7 +25,8 @@ export default class CertificateFormComponent<T> extends React.Component<
   ManageCertificateComponentState
 > {
   state: ManageCertificateComponentState = {
-    certificate: Object.assign({})
+    certificate: Object.assign({}),
+    showSuppliersModal: false
   };
 
   handleChange = (
@@ -48,8 +52,8 @@ export default class CertificateFormComponent<T> extends React.Component<
 
   isFormValid = () => {
     if (
-      this.state.certificate.supplierId &&
-      this.state.certificate.certificateTypeId &&
+      this.state.certificate.supplierId >= 0 &&
+      this.state.certificate.certificateTypeId >= 0 &&
       this.state.certificate.validFrom &&
       this.state.certificate.validTo
     ) {
@@ -57,6 +61,21 @@ export default class CertificateFormComponent<T> extends React.Component<
     }
     return false;
   };
+
+  renderSearch(label: string, value: string) {
+    return (
+      <div className="form-element">
+        <span>{label}</span>
+        <div className="lookup-bar">
+          <input value={value} readOnly />
+          {renderButton("⌕", "lookup-button", () => {
+            this.setState({showSuppliersModal: true});
+          })}
+          {renderButton("🞬", "lookup-button", () => {})}
+        </div>
+      </div>
+    );
+  }
 
   resetCertificateForm = () => {
     if (this.state.certificate.id) {
@@ -80,23 +99,69 @@ export default class CertificateFormComponent<T> extends React.Component<
     }
   };
 
+  cancelAction = () => {
+    this.setState({showSuppliersModal: false});
+  }
+
+  selectAction = (supp: SupplierType) => {
+    // this.handleChange("supplierId", supplier.id);
+    // this.handleChange("supplier", supplier);
+    this.setState( {
+      showSuppliersModal: false,
+      certificate: {...this.state.certificate, supplierId: Number(supp.id), supplier: supp}});
+  }
+
+  stringifySupplier(supplier?: SupplierType) {
+    if(supplier === undefined){
+      return "";
+    }
+    else{
+      return supplier.name + ", " + supplier.index + ", " + supplier.city;
+    }
+  } 
+
   render() {
     const { certificate } = this.state;
     return (
       <div className="form">
         <Row>
           <Column>
-            {renderSelect('Supplier', certificate, 'supplierId', 'suppliers', this.handleChange)}
-            {renderSelect('Certificate Type', certificate, 'certificateTypeId', 'certificateTypes', this.handleChange)} 
-            {renderInput('Valid from', certificate, 'validFrom', 'date', this.handleChange)}
-            {renderInput('Valid to', certificate, 'validTo', 'date', this.handleChange)}
+            {!this.state.showSuppliersModal || <SupplierOverviewComponent cancelAction={this.cancelAction} selectAction={this.selectAction} />}
+            {this.renderSearch("Supplier", this.stringifySupplier(this.state.certificate.supplier))}
+            {renderSelect(
+              "Certificate Type",
+              certificate,
+              "certificateTypeId",
+              "certificateTypes",
+              this.handleChange
+            )}
+            {renderInput(
+              "Valid from",
+              certificate,
+              "validFrom",
+              "date",
+              this.handleChange
+            )}
+            {renderInput(
+              "Valid to",
+              certificate,
+              "validTo",
+              "date",
+              this.handleChange
+            )}
           </Column>
-          <Column>
-            {renderFilePicker()}
-          </Column>
+          <Column>{renderFilePicker()}</Column>
           <div className="button-container">
-            {renderButton('Save', 'button save-button', this.saveCertificateItemAction)}
-            {renderButton('Reset', 'button reset-button', this.resetCertificateForm)}
+            {renderButton(
+              "Save",
+              "button save-button",
+              this.saveCertificateItemAction
+            )}
+            {renderButton(
+              "Reset",
+              "button reset-button",
+              this.resetCertificateForm
+            )}
           </div>
         </Row>
       </div>

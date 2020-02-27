@@ -8,14 +8,16 @@
       "id": 1
     },
     {
-      "supplierId": "1",
+      "supplierId": 0,
       "certificateTypeId": "1",
       "validFrom": "2020-02-22",
       "validTo": "2020-02-29",
       "id": 2,
       "supplier": {
-        "id": 1,
-        "value": "ANDEMIS GmbH, 1, Stuttgart"
+        "id": 0,
+        "name": "DAIMLER AG",
+        "index": 1,
+        "city": "Berlin"
       },
       "certificateType": {
         "id": 1,
@@ -33,11 +35,15 @@
   "suppliers": [
     {
       "id": 0,
-      "value": "DAIMLER AG, 1, Berlin"
+      "name": "DAIMLER AG",
+      "index": 1,
+      "city": "Berlin"
     },
     {
       "id": 1,
-      "value": "ANDEMIS GmbH, 1, Stuttgart"
+      "name": "ANDEMIS GmbH",
+      "index": 1,
+      "city": "Stuttgart"
     }
   ],
   "certificateTypes": [
